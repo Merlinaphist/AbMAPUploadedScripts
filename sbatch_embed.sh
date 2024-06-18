@@ -28,27 +28,26 @@ echo `date`": "$n_sample" Run BLAST+ for alignment"
 HEADERS="qseqid\tqstart\tqend\tsseqid\tsstart\tsend\tevalue\tpident\tqframe\tsframe"
 for DISEASE in "DEN" "CMV"
 do
-for REGION in "V" "J"
-do
-blastn -query $FASTA_PATH/${DISEASE}_${n_sample}.fasta \
-        -task "blastn" \
-        -db $IgBLASTwd/database/IGH${REGION}/Edited_IGH${REGION}.fasta \
+# for REGION in "V" "J"
+# do
+blastx -query $FASTA_PATH/${DISEASE}_${n_sample}.fasta \
+        -db $IgBLASTwd/database/IGHV/IGHV_AA.fasta \
         -num_alignments 1 -max_hsps 1 \
         -outfmt "6 qseqid qstart qend sseqid sstart send evalue pident qframe sframe" \
         -out output.tsv
-echo -e $HEADERS | cat - output.tsv > $FASTA_PATH/${DISEASE}_${n_sample}_BLASTN_IGH${REGION}.tsv
+echo -e $HEADERS | cat - output.tsv > $FASTA_PATH/${DISEASE}_${n_sample}_BLASTX_IGHV.tsv
 rm output.tsv
 
-# $IgBLASTwd/bin/igblastn -germline_db_V $IgBLASTwd/database/IGHV/Edited_IGHV.fasta \
-#             -germline_db_J $IgBLASTwd/database/IGHJ/Edited_IGHJ.fasta \
-#             -germline_db_D $IgBLASTwd/database/IGHD/Edited_IGHD.fasta \
-#             -c_region_db $IgBLASTwd/database/c_genes/ncbi_human_c_genes \
-#             -auxiliary_data $IgBLASTwd/optional_file/human_gl.aux \
-#             -num_alignments_V 1 -num_alignments_D 1 -num_alignments_J 1 \
-#             -query $FASTA_PATH/${DISEASE}_${n_sample}_imputed.fasta \
-#             -outfmt 19 -out $FASTA_PATH/${DISEASE}_${n_sample}_imputed_IgBLAST.tsv \
-#             -show_translation
-done
+blastn -query $FASTA_PATH/${DISEASE}_${n_sample}.fasta \
+        -task "blastn" \
+        -db $IgBLASTwd/database/IGHJ/Edited_IGHJ.fasta \
+        -num_alignments 1 -max_hsps 1 \
+        -outfmt "6 qseqid qstart qend sseqid sstart send evalue pident qframe sframe" \
+        -out output.tsv
+echo -e $HEADERS | cat - output.tsv > $FASTA_PATH/${DISEASE}_${n_sample}_BLASTN_IGHJ.tsv
+rm output.tsv
+
+# done
 done
 
 echo `date`": "$n_sample" impute"

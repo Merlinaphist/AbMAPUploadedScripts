@@ -80,7 +80,7 @@ def LoadQueryFASTA(filename):
 
 
 def LoadAlignment(disease, database):
-    vdata = pd.read_csv(f"{fasta_path}/{disease}_{n_sample}_BLASTN_IGHV.tsv", sep="\t")
+    vdata = pd.read_csv(f"{fasta_path}/{disease}_{n_sample}_BLASTX_IGHV.tsv", sep="\t")
     jdata = pd.read_csv(f"{fasta_path}/{disease}_{n_sample}_BLASTN_IGHJ.tsv", sep="\t")
     vdata.columns = ['query_id', 'v_query_start', 'v_query_end', 'v_call', 
                     'v_germline_start', 'v_germline_end', 'v_evalue', 'v_pident', 
@@ -98,7 +98,7 @@ def LoadAlignment(disease, database):
 
 
 def impute(row):
-    head = row['v_germline_sequence'][0:row['v_germline_start']-1]
+    head = row['v_germline_sequence'][0:3*(row['v_germline_start']-1)]
     body = row['full_query_sequence'][row['v_query_start']-1:row['j_query_end']]
     tail = row['j_germline_sequence'][row['j_germline_end']:]
     return head + body + tail
