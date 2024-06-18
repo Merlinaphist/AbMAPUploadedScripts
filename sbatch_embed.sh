@@ -10,7 +10,7 @@
 
 echo `date`": program starts"
 
-cd /hpc/home/jm688/projects/AbMAP_JM
+cd /hpc/home/jm688/projects/AbMAP_JM/AbMAPUploadedScripts
 source /hpc/group/singhlab/tools/conda/miniconda3/etc/profile.d/conda.sh
 conda activate abmap_jm
 
