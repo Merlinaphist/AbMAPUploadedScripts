@@ -10,11 +10,11 @@ embedding_path = f"{disease_path}/Embeddings"
 plot_path = f"{project_path}/figures"
 nrows = [1000, 10000]
 
-xmin=-1
-xmax=11
+xmin=-2
+xmax=13
 xticks = np.arange(xmin, xmax+1)
 ymin=-2
-ymax=9
+ymax=11
 yticks = np.arange(ymin, ymax+1)
 fig, axs = plt.subplots(3, 2, figsize=(15, 15))
 for col in range(2):
