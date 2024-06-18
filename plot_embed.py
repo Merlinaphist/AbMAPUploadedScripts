@@ -10,7 +10,7 @@ embedding_path = f"{disease_path}/Embeddings"
 plot_path = f"{project_path}/figures"
 nrows = [1000, 10000]
 
-xmin=-2
+xmin=-3
 xmax=13
 xticks = np.arange(xmin, xmax+1)
 ymin=-2
